@@ -1,0 +1,10 @@
+# Object files
+*.out
+*.o
+# Libraries
+*.a
+# Ignored folders
+#test*/
+obj*/
+# executable
+fdf

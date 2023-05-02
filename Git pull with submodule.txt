@@ -1,0 +1,85 @@
+	## Main commands used
+#### @@ https://git-scm.com/book/en/v2/Git-Tools-Submodules
+# @@@@ https://phoenixnap.com/kb/git-submodule @@@ 
+# @@@@ https://www.murarinayak.com/blog/tag/git/
+
+#################################### Create Alias	
+git config --global alias.scommit '!sh scommit.sh'
+
+
+################################### Create private_repo & adding 42 project_repo
+
+echo "# 42_push_swap" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/VictoriaLizCor/42_push_swap.git
+git push -u origin main
+
+git branch --set-upstream-to=origin/main  master
+
+
+################################# 
+>$ git clone private_repo@url parent_folder
+>$ cd parent_folder
+
+##################################  adding submodule #############################
+>$ git submodule add project_repo@url submodule_folder
+> $ git submodule update --init --recursive
+# initialize submodule and pull remote repo files
+>$ git submodule init
+>$ git submodule update
+
+# adding submodule + init + update command  
+>$ git clone --recurse-submodules project_repo@url submodule_folder
+
+
+################## Working on a Project with Submodules 
+
+## Clone repo with submodules
+
+git clone --recurse-submodules repo@url
+
+Git clone --recursive repo@url
+
+
+# update changes in repo & submodules
+
+git submodule update --remote --recursive 
+
+### Git Pull with Submodule
+
+For a repo with submodules, we can pull all submodules using
+
+git submodule update --init --recursive
+
+for the first time. All submodules will be pulled down locally.
+
+### To update submodules, we can use
+
+
+git submodule update --recursive --remote
+
+or simply
+
+git pull --recurse-submodules
+
+## remove folders in git repo
+
+git rm -r [subdirectory]
+
+
+# To remove a submodule you need to:
+# Delete the relevant section from the .gitmodules file.
+# Stage the .gitmodules changes:
+git add .gitmodules
+# Delete the relevant section from .git/config.
+# Remove the submodule files from the working tree and index:
+git rm --cached path_to_submodule (no trailing slash).
+#Remove the submodule's .git directory:
+rm -rf .git/modules/path_to_submodule
+Commit the changes:
+#git commit -m "Removed submodule <name>"
+Delete the now untracked submodule files:
+# rm -rf path_to_submodule
