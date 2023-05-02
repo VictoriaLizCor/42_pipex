@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:19:28 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/02 17:41:01 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:47:33 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,16 @@ int	main(int argc, char **argv)
 	pipe(fd);
 
 	switch (pid = fork()) {
-
-	case 0: /* child */
-		runpipe(fd, cmd1, cmd2);
-		exit(0);
-
-	default: /* parent */
-		while ((pid = wait(&status)) != -1)
-			fprintf(stderr, "\n\nprocess %d exits with %d\n", pid, WEXITSTATUS(status));
-		break;
-
-	case -1:
-		perror("fork");
-		exit(1);
+		case 0: /* child */
+			runpipe(fd, cmd1, cmd2);
+			exit(0);
+		default: /* parent */
+			while ((pid = wait(&status)) != -1)
+				fprintf(stderr, "\n\nprocess %d exits with %d\n", pid, WEXITSTATUS(status));
+			break;
+		case -1:
+			perror("fork");
+			exit(1);
 	}
 	exit(0);
 }
