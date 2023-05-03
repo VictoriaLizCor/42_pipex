@@ -18,16 +18,24 @@ else
 	MSG = Linux
 endif
 
-all:  $(NAME)
+all: $(NAME)
 
 $(NAME): $(SRCS) | $(LIBFT)
-	@echo $(GREEN)
+	@echo $(GREEN) 
 	cc $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBFT_FLAGS)
 	$(BANNER_FDF)
 
 $(LIBFT):
 	@echo $(BLUE)
 	@make -C $(LIBFT_DIR)
+
+cmd1: $(NAME)
+	@echo $(CROSS) 
+	./pipex infile "cat infile" "wc -l" outfile
+
+cmd2: $(NAME)
+	@echo $(CROSS) 
+	./pipex infile "ls" "wc" outfile
 
 clean:
 	@echo "\n************  CLEAN LIBFT ************" 
@@ -78,7 +86,7 @@ CROSS = "\033[8m"
 RED = "\033[0;1;91m"
 GREEN = "\033[0;1;32m"
 BLUE = "\033[0;1;34m"
-BANNER_FDF = @echo $(GREEN) "$$IMG"
+BANNER_FDF = @echo "$$IMG"
 
 #sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
