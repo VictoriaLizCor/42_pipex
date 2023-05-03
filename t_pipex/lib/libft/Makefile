@@ -6,7 +6,7 @@
 #    By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 13:32:36 by lilizarr          #+#    #+#              #
-#    Updated: 2023/05/02 16:52:26 by lilizarr         ###   ########.fr        #
+#    Updated: 2023/05/03 09:51:15 by lilizarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ $(addprefix $(OBJS_LIBFT_DIR), %.o): %.c
 # Make standard libft archive
 $(NAME): $(OBJS_LIBFT)
 	ar -rcs $@ $^
-	ar -t $@
+#	ar -t $@
 #	chmod 777 $(NAME)
 
 # Clean intermediary files
