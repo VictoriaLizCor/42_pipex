@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:19:28 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/03 13:38:56 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:18:16 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <string.h>
 
 void	runpipe(int pfd[], char **cmd1, char **cmd2, char **env)
 {
@@ -46,10 +47,11 @@ int	main(int argc, char **argv, char **env)
 {
 	int	pid, status;
 	int	fd[2];
-	char *cmd1[] = { "/bin/cat", "./infile", 0 };
+	char *str;
+	char *cmd1[] = { "/bin/cat", argv[1], 0 };
 	char *cmd2[] = { "/usr/bin/tr", "a-z", "A-Z", 0 };
 	pipe(fd);
-
+	str = strdup(argv[1]);
 	switch (pid = fork()) {
 		case 0: /* child */
 			runpipe(fd, cmd1, cmd2, env);

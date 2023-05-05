@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:32:51 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/02 16:52:58 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:42:03 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,5 +306,5 @@ void		ft_putstr(char *s);
 void		ft_putchar(char c);
 /* ft_utils.c */
 void		ft_free(char **str);
-void		ft_error(char *msg);
+void		ft_error(char *str1, char *str2);
 #endif

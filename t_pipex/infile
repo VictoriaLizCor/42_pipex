@@ -1,7 +1,12 @@
-Makefile other
-include
-infile
-lib
-outfile
-pipex
-src
+total 216
+drwxr-xr-x  11 lilizarr  2021_wolfsburg    374 May  5 15:12 .
+drwxr-xr-x  11 lilizarr  2021_wolfsburg    374 May  2 16:42 ..
+-rw-r--r--   1 lilizarr  2021_wolfsburg   3037 May  5 14:42 Makefile
+drwxr-xr-x   3 lilizarr  2021_wolfsburg    102 Apr 28 15:57 include
+-rw-r--r--   1 lilizarr  2021_wolfsburg      0 May  5 15:14 infile
+drwxr-xr-x   3 lilizarr  2021_wolfsburg    102 Apr 28 15:43 lib
+-rw-r--r--   1 lilizarr  2021_wolfsburg      0 May  5 10:43 outfile
+-rwxr-xr-x   1 lilizarr  2021_wolfsburg  51592 May  5 14:53 pipex
+drwxr-xr-x   4 lilizarr  2021_wolfsburg    136 May  2 17:33 src
+drwxr-xr-x   4 lilizarr  2021_wolfsburg    136 May  3 10:00 test
+-rwxr-xr-x   1 lilizarr  2021_wolfsburg  49944 May  5 15:12 test1

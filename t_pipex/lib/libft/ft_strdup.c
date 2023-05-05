@@ -6,13 +6,13 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:06:44 by lilizarr          #+#    #+#             */
-/*   Updated: 2022/09/28 13:58:16 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:52:52 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 /*
-** DESCRIPTION
+** @DESCRIPTION
 ** The strdup() function allocates sufficient memory for a copy
 ** of the string s1, does the copy, and returns a pointer to 
 ** it. The pointer may subsequently be used as an argument to 

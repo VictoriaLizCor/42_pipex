@@ -1,9 +1,10 @@
 NAME = pipex
 
 SRCS_DIR := src/
-SRCS =	src/pipex.c
+SRCS =	src/pipex.c		\
+		src/utils.c		\
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra #-Werror
 CINCLUDES += -I include/
 
 LIBFT_DIR = lib/libft/
@@ -30,18 +31,17 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 cmd1: $(NAME)
-	@echo $(CROSS) 
-	./pipex infile "cat infile" "wc -l" outfile
+	@echo $(NOCOLOR) 
+	./pipex infile "cat" "grep" outfile
 
 cmd2: $(NAME)
-	@echo $(CROSS) 
-	./pipex infile "ls" "wc" outfile
+	@echo $(NOCOLOR) 
+	./pipex infile "ls -la" "wc" outfile
 
 clean:
+	@echo $(RED)
 	@echo "\n************  CLEAN LIBFT ************" 
 	@make -C $(LIBFT_DIR) clean
-	@echo "\n************  CLEAN ROOT  ************"
-	@rm -rf $(OBJS_DIR)
 
 fclean:	clean
 	@echo "\n************  FCLEAN LIBFT  ************"
@@ -86,7 +86,8 @@ CROSS = "\033[8m"
 RED = "\033[0;1;91m"
 GREEN = "\033[0;1;32m"
 BLUE = "\033[0;1;34m"
-BANNER_FDF = @echo "$$IMG"
+NOCOLOR	= "\033[m"
+BANNER_FDF = @echo $(GREEN) "$$IMG"
 
 #sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
