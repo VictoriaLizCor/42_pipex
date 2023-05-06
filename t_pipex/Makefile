@@ -32,11 +32,24 @@ $(LIBFT):
 
 cmd1: $(NAME)
 	@echo $(NOCOLOR) 
-	./pipex infile "cat" "grep" outfile
+	./pipex infile "ls" "grep" outfile
 
 cmd2: $(NAME)
 	@echo $(NOCOLOR) 
 	./pipex infile "ls -la" "wc" outfile
+
+cmd3: $(NAME)
+	@echo $(NOCOLOR) 
+	./pipex infile "cat" "wc -w" outfile
+
+cmd4: $(NAME)
+	@echo $(NOCOLOR) 
+	./pipex infile "c" "wc -w" outfile
+
+pipe: $(NAME)
+	@echo $(NOCOLOR) 
+	$(shell  < infile | wc -w > outfile)
+# < infile ls | wc -w > outfile
 
 clean:
 	@echo $(RED)

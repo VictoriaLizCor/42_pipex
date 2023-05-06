@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:19:28 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/05 15:18:16 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:33:40 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,19 @@
 void	runpipe(int pfd[], char **cmd1, char **cmd2, char **env)
 {
 	int	pid;
+	int status;
 
 	switch (pid = fork()) {
 
 	case 0: /* child */
-		dup2(pfd[0], 0);
+		dup2(pfd[0], STDIN_FILENO);
 		close(pfd[1]);	/* the child does not need this end of the pipe */
-		execve(cmd2[0], cmd2, env);
+		execve(cmd2[0], cmd2, 0);
 		perror(cmd2[0]);
 	default: /* parent */
-		dup2(pfd[1], 1);
+		dup2(pfd[1], STDOUT_FILENO);
 		close(pfd[0]);	/* the parent does not need this end of the pipe */
-		execvp(cmd1[0], cmd1);
+		execve(cmd1[0], cmd1, 0);
 		perror(cmd1[0]);
 	case -1:
 		perror("fork");
@@ -57,10 +58,7 @@ int	main(int argc, char **argv, char **env)
 			runpipe(fd, cmd1, cmd2, env);
 			exit(0);
 		default: /* parent */
-			pid = wait(&status);
-			printf("pid %d | status %d\n", pid, status);
-			while ((pid = wait(&status)) != -1)
-				fprintf(stderr, "\n\nprocess %d exits with %d\n", pid, WEXITSTATUS(status));
+	
 			break;
 		case -1:
 			perror("fork");

@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:09:10 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/05 14:48:53 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/06 11:23:10 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	cmd_path(void)
 void	free_data(t_pipex data)
 {
 	ft_free(data.paths);
-	ft_free(data.cmd_info[0].cmd);
-	free(data.cmd_info[0].path);
-	ft_free(data.cmd_info[1].cmd);
-	free(data.cmd_info[1].path);
+	ft_free(data.cmd[0].exe);
+	free(data.cmd[0].path);
+	ft_free(data.cmd[1].exe);
+	free(data.cmd[1].path);
 }
