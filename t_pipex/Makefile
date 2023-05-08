@@ -44,11 +44,14 @@ cmd3: $(NAME)
 
 cmd4: $(NAME)
 	@echo $(NOCOLOR) 
-	./pipex infile "c" "wc -w" outfile
+	./pipex infile "" "wc" outfile
+	cat ./outfile
 
 pipe: $(NAME)
 	@echo $(NOCOLOR) 
-	$(shell  < infile | wc -w > outfile)
+	@rm -f outfile
+	$(shell  <infile l| wc )
+	cat ./outfile
 # < infile ls | wc -w > outfile
 
 clean:
@@ -67,7 +70,7 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
-define IMG
+define PIPEX_IMG
 
 			▒▒▒▒▒▒▒▒▒▄▄▄▄▒▒▒▒▒▒▒
 			▒▒▒▒▒▒▄▀▀▓▓▓▀█▒▒▒▒▒▒
@@ -93,14 +96,14 @@ define IMG
 	
 
 endef
-export IMG
+export PIPEX_IMG
 
 CROSS = "\033[8m"
 RED = "\033[0;1;91m"
 GREEN = "\033[0;1;32m"
 BLUE = "\033[0;1;34m"
 NOCOLOR	= "\033[m"
-BANNER_FDF = @echo $(GREEN) "$$IMG"
+BANNER_FDF = @echo $(GREEN) "$$PIPEX_IMG"
 
 #sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0

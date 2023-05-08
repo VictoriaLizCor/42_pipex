@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:32:33 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/06 15:05:02 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:50:01 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_cmd
 typedef struct s_pipex
 {
 	pid_t	pid;
+	int		pipex[2];
 	char	**paths;
 	t_cmd	cmd[2];
 }	t_pipex;
