@@ -32,7 +32,7 @@ void	cmd_exe(t_pipex **d, char *argv, int idx)
 			(*d)->cmd[idx].path = ft_strdup(exe_path);
 		free(path_tmp);
 		free(exe_path);
-		p++;
+		p++;	
 	}
 	if (!(*d)->cmd[idx].path)
 	{
@@ -72,6 +72,7 @@ void	cmd(t_pipex *data, char **argv, int oflag, int idx)
 	if (access(data->cmd[idx].path, X_OK) == 0)
 		execve(data->cmd[idx].path, data->cmd[idx].exe, 0);
 	perror("Error");
+	close(file);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -93,7 +94,8 @@ int	main(int argc, char **argv, char **env)
 	else
 	{
 		waitpid(data.pid, &status, 0);
-		cmd(&data, argv, O_CREAT | O_RDWR | O_TRUNC, 1);
+		if (status == 0)
+			cmd(&data, argv, O_CREAT | O_RDWR | O_TRUNC, 1);
 	}
 	return (0);
 }
