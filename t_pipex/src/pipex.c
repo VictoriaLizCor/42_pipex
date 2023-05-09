@@ -95,7 +95,7 @@ int	main(int argc, char **argv, char **env)
 }
 	// if (execve(data.cmd[0].path, data.cmd[0].exe, env) < 0)
 	// 	perror(strerror(errno));
-
+//test
 	// cmd_exe(&data, argv[2], 0);
 	// cmd_exe(&data, argv[3], 1);
 	// ft_printf("1-> %s\n", data.cmd[0].cmd[0]);
