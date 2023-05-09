@@ -1,0 +1,9 @@
+Makefile
+include
+infile
+lib
+outfile
+pipex
+pipex.dSYM
+src
+test

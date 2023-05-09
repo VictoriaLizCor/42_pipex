@@ -23,7 +23,7 @@ void	cmd_exe(t_pipex **d, char *argv, int idx)
 	(*d)->cmd[idx].exe = ft_split(argv, ' ');
 	tmp_cmd = (*d)->cmd[idx].exe[0];
 	if (!tmp_cmd)
-		(*d)->cmd[idx].path = "./";
+		(*d)->cmd[idx].path = ft_strdup("./");
 	while (*p && tmp_cmd)
 	{
 		path_tmp = ft_strjoin(*p, "/");
@@ -60,21 +60,14 @@ void	cmd(t_pipex *data, char **argv, int oflag, int idx)
 	{
 		dup2(data->pipex[!idx], !idx);
 		dup2(data->file, idx);
-		if (!idx)
-		{
-			if (close(data->file) < 0)
-				ft_error(strerror(errno), "lo");
-		}
+		if (close(data->file) < 0)
+			ft_error(strerror(errno), argv[1 + 3 * idx]);
 	}
 	if (close(data->pipex[idx]) < 0)
-		ft_error(strerror(errno), "**");
+		ft_error(strerror(errno), "");
 	cmd_exe(&data, argv[2 + idx], idx);
-	if (access(data->cmd[idx].path, X_OK) == 0)
-	{
-		execve(data->cmd[idx].path, data->cmd[idx].exe, 0);
-		ft_error(strerror(errno), data->cmd[idx].exe[0]);
-	}
-	return ;
+	execve(data->cmd[idx].path, data->cmd[idx].exe, 0);
+	ft_error(strerror(errno), data->cmd[idx].exe[0]);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -92,19 +85,13 @@ int	main(int argc, char **argv, char **env)
 	if (data.pid < 0)
 		ft_error("Fork failed", "");
 	if (data.pid > 0)
-	{
 		cmd(&data, argv, O_RDONLY, 0);
-		exit(0);
-	}
 	else
 	{
-		waitpid(data.pid, &status, 0);
-		// ft_printf("status: %d\n", status);
+		waitpid(data.pid, &status, WUNTRACED);
 		cmd(&data, argv, O_CREAT | O_RDWR | O_TRUNC, 1);
-		if (close(data.file) < 0)
-			ft_error(strerror(errno), "lo");
 	}
-	exit(0);
+	return (0);
 }
 	// if (execve(data.cmd[0].path, data.cmd[0].exe, env) < 0)
 	// 	perror(strerror(errno));

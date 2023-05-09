@@ -13,12 +13,6 @@ LIBFT =  $(LIBFT_DIR)libft.a
 LIBFT_FLAGS = -L./$(LIBFT_DIR) -lft
 CINCLUDES += -I $(LIBFT_DIR)
 
-ifeq ($(shell uname), Darwin)
-	MSG = MacOS
-else
-	MSG = Linux
-endif
-
 all: $(NAME)
 
 $(NAME): $(SRCS) | $(LIBFT)

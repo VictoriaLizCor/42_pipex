@@ -6,16 +6,11 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:09:10 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/06 11:23:10 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:57:11 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	cmd_path(void)
-{
-	return ;
-}
 
 void	free_data(t_pipex data)
 {
