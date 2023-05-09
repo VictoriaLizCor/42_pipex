@@ -1,13 +1,13 @@
 # Object files
 *.out
 *.o
-*outfile
-*infile
+**/outfile*
+**/infile*
 # Libraries
 *.a
 # Ignored folders
 */test*/
-*/t_pipex/pipex.dSYM*/
+*/t_pipex/pipex.dSYM*
 obj*/
 # executable
 ./pipex
