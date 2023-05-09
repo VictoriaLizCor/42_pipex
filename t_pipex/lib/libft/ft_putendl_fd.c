@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:06:44 by lilizarr          #+#    #+#             */
-/*   Updated: 2022/09/15 17:10:15 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:06:42 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	ft_putendl_fd(char *s, int fd)
 	if (s)
 	{
 		if (fd)
-		{
 			write(fd, s, ft_strlen(s));
-			write(fd, "\n", 1);
-		}
 	}
+	write(fd, "\n", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:29:47 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/08 16:30:03 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:11:50 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	ft_free(char **str)
 
 void	ft_error(char *str1, char *str2)
 {
-	if (str1 && str2)
-		ft_printf("Error : %s %s\n", str1, str2);
-	exit(EXIT_FAILURE);
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(str1, 2);
+	ft_putstr_fd(" : ", 2);
+	ft_putendl_fd(str2, 2);
+	exit(1);
 }

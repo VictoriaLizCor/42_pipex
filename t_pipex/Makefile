@@ -4,7 +4,7 @@ SRCS_DIR := src/
 SRCS =	src/pipex.c		\
 		src/utils.c		\
 
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 CINCLUDES += -I include/
 
 LIBFT_DIR = lib/libft/
@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME): $(SRCS) | $(LIBFT)
 	@echo $(GREEN) 
-	cc $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBFT_FLAGS)
+	cc -g $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBFT_FLAGS)
 	$(BANNER_FDF)
 
 $(LIBFT):

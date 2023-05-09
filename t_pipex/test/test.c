@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:19:28 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/06 14:33:40 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:16:23 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	main(int argc, char **argv, char **env)
 			runpipe(fd, cmd1, cmd2, env);
 			exit(0);
 		default: /* parent */
-	
 			break;
 		case -1:
 			perror("fork");
