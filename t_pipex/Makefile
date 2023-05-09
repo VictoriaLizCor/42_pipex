@@ -17,7 +17,7 @@ all: $(NAME)
 
 $(NAME): $(SRCS) | $(LIBFT)
 	@echo $(GREEN)
-	cc $(CFLAGS) $(CINCLUDES) -o $@ $(LIBFT_FLAGS)
+	cc $(CFLAGS) $(CINCLUDES) $(SRCS) -o $@ $(LIBFT_FLAGS)
 	$(BANNER_FDF)
 
 $(LIBFT):
