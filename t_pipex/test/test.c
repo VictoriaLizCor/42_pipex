@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:19:28 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/09 11:16:23 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:39:18 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	runpipe(int pfd[], char **cmd1, char **cmd2, char **env)
 	case -1:
 		perror("fork");
 		exit(1);
-	}
+	
 }
 
 int	main(int argc, char **argv, char **env)
@@ -52,7 +52,6 @@ int	main(int argc, char **argv, char **env)
 	char *cmd1[] = { "/bin/cat", argv[1], 0 };
 	char *cmd2[] = { "/usr/bin/tr", "a-z", "A-Z", 0 };
 	pipe(fd);
-	str = strdup(argv[1]);
 	switch (pid = fork()) {
 		case 0: /* child */
 			runpipe(fd, cmd1, cmd2, env);
