@@ -7,8 +7,7 @@
 *.a
 # Ignored folders
 */test*/
-*/pipex*
-*/ pipex.dSYM
+*/pipex.dSYM
 obj*/
 # executable
 ./pipex
