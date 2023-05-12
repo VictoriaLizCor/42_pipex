@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:19:28 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/09 17:39:18 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/11 11:43:02 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 void	runpipe(int pfd[], char **cmd1, char **cmd2, char **env)
 {
 	int	pid;
-	int status;
+	int	status;
 
 	switch (pid = fork()) {
 
@@ -42,6 +42,7 @@ void	runpipe(int pfd[], char **cmd1, char **cmd2, char **env)
 		perror("fork");
 		exit(1);
 	
+}
 }
 
 int	main(int argc, char **argv, char **env)
