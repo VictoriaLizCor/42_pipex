@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:59:02 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/13 14:53:05 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:18:40 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,11 @@ int	main(int argc, char **argv, char **env)
 		ft_error("Fork failed", NULL, 1);
 	if (pid == 0)
 		runpipe(&data, argv, pid);
+	else
+	{
+		waitpid(-1, NULL, WUNTRACED);
+		// ft_printf("%s", data.cmd[0].exe[0]);
+		// free_data(&data);
+	}
 	exit(0);
 }

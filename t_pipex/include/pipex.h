@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:32:33 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/13 14:53:12 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:09:13 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ typedef struct s_pipex
 }	t_pipex;
 
 void	get_paths(char **env, t_pipex *d);
+void	free_data(t_pipex *data);
 #endif
