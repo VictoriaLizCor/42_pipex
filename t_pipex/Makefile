@@ -4,7 +4,7 @@ SRCS_DIR := src/
 SRCS =	src/pipex.c		\
 		src/utils.c		\
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 CINCLUDES += -I include/
 
 LIBFT_DIR = lib/libft/
@@ -24,29 +24,6 @@ $(LIBFT):
 	@echo $(BLUE)
 	@make -C $(LIBFT_DIR)
 
-cmd1: $(NAME)
-	@echo $(NOCOLOR) 
-	./pipex infile "ls" "grep" outfile
-
-cmd2: $(NAME)
-	@echo $(NOCOLOR) 
-	./pipex infile "ls -la" "wc" outfile
-
-cmd3: $(NAME)
-	@echo $(NOCOLOR) 
-	./pipex infile "cat" "wc -w" outfile
-
-cmd4: $(NAME)
-	@echo $(NOCOLOR) 
-	./pipex infile "" "wc" outfile
-	cat ./outfile
-
-pipe: $(NAME)
-	@echo $(NOCOLOR) 
-	@rm -f outfile
-	$(shell  <infile l| wc )
-	cat ./outfile
-# < infile ls | wc -w > outfile
 
 clean:
 	@echo $(RED)
