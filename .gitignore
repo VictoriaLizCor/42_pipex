@@ -3,8 +3,8 @@
 *.o
 **/outfile*
 **/infile*
-*/infile*
-*/outfile
+/**/infile*
+/**/outfile
 # Libraries
 *.a
 # Ignored folders
