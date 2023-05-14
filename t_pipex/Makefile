@@ -17,7 +17,7 @@ all: $(NAME)
 
 $(NAME): $(SRCS) | $(LIBFT)
 	@echo $(GREEN)
-	cc $(CFLAGS) $(CINCLUDES) $(SRCS) -o $@ $(LIBFT_FLAGS)
+	cc $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBFT_FLAGS)
 	$(BANNER_FDF)
 
 $(LIBFT):
@@ -75,6 +75,3 @@ GREEN = "\033[0;1;32m"
 BLUE = "\033[0;1;34m"
 NOCOLOR	= "\033[m"
 BANNER_FDF = @echo $(GREEN) "$$PIPEX_IMG"
-
-#sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
-#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0

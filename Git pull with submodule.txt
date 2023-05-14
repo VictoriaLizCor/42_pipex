@@ -83,3 +83,21 @@ Commit the changes:
 #git commit -m "Removed submodule <name>"
 Delete the now untracked submodule files:
 # rm -rf path_to_submodule
+
+--verbose \
+
+
+valgrind --leak-check=full \
+--show-leak-kinds=all \
+--track-origins=yes \
+--trace-children=yes \
+ --track-fds=yes \ 
+ ./pipex infile "cat" "tr a-z A-Z" outfile 
+
+ valgrind --leak-check=full \
+ --show-leak-kinds=all \ 
+ --track-origins=yes \
+ --track-fds=yes \ 
+ --trace-children=yes \
+ -s -q \
+ ./pipex infile "cat"  "tr a-z A-Z"  outfile 

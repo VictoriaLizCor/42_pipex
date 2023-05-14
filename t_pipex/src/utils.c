@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:09:10 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/13 15:08:28 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:04:45 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ void	get_paths(char **env, t_pipex *d)
 
 void	free_data(t_pipex *data)
 {
-	ft_free(data->paths);
-	ft_free(data->cmd[0].exe);
-	free(data->cmd[0].path);
-	ft_free(data->cmd[1].exe);
-	free(data->cmd[1].path);
+	if (data->paths)
+		ft_free(data->paths);
+	if (data->cmd[0].exe)
+		ft_free(data->cmd[0].exe);
+	if (data->cmd[0].path)
+		free(data->cmd[0].path);
+	if (data->cmd[1].exe)
+		ft_free(data->cmd[1].exe);
+	if (data->cmd[1].path)
+		free(data->cmd[1].path);
 }

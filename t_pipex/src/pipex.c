@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:59:02 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/13 15:18:40 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/14 20:13:25 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	main(int argc, char **argv, char **env)
 	else
 	{
 		waitpid(-1, NULL, WUNTRACED);
-		// ft_printf("%s", data.cmd[0].exe[0]);
-		// free_data(&data);
+		free_data(&data);
+		exit(0);
 	}
 	exit(0);
 }
