@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:59:02 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/14 20:13:25 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:01:56 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	openfile(t_pipex *data, char **argv, int oflag, int idx)
 	data->file = open(argv[1 + 3 * idx], oflag, 0644);
 	if (data->file < 0)
 		ft_error(strerror(errno), argv[1 + 3 * idx], 1);
-	dup2(data->file, idx);
+	dup2(data->file, data->pipex[!idx]);
 }
 
 void	cmd(t_pipex *data, char **argv, int idx)
