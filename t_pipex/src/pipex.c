@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:59:02 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/15 14:01:56 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:16:59 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	runpipe(t_pipex *data, char **argv, pid_t pid)
 	{
 		openfile(&*data, argv, O_CREAT | O_RDWR | O_TRUNC, 1);
 		if (waitpid(-1, &status, WUNTRACED) == data->pid && status)
-			dup2(data->file, data->pipex[0]);
+			dup2(1, data->pipex[0]);
 		cmd(&*data, argv, 1);
 	}
 }

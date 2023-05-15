@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:59:02 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/15 17:40:17 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/15 22:25:40 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	cmd_exe(t_pipex *d, char *argv, int idx)
 	{
 		path_tmp = ft_strjoin(*p, "/");
 		if (ft_strnstr(tmp_cmd, path_tmp, ft_strlen(tmp_cmd)))
+		{
+			d->cmd[idx].exe[0] = ft_strtrim(d->cmd[idx].exe[0], path_tmp);
 			tmp_cmd = tmp_cmd + ft_strlen(path_tmp);
+		}
 		exe_path = ft_strjoin(path_tmp, tmp_cmd);
 		if (access(exe_path, X_OK | F_OK) == 0)
 			d->cmd[idx].path = ft_strdup(exe_path);
@@ -36,9 +39,6 @@ void	cmd_exe(t_pipex *d, char *argv, int idx)
 		free(exe_path);
 		p++;
 	}
-	d->cmd[idx].exe[0] = ft_strdup(tmp_cmd);
-	if (!d->cmd[idx].path)
-		ft_error(d->cmd[idx].exe[0], "command not found", 1);
 }
 
 void	openfile(t_pipex *data, char **argv, int oflag, int idx)
@@ -46,23 +46,23 @@ void	openfile(t_pipex *data, char **argv, int oflag, int idx)
 	data->file = open(argv[1 + 3 * idx], oflag, 0644);
 	if (data->file < 0)
 		ft_error(strerror(errno), argv[1 + 3 * idx], 1);
-	dup2(data->file, idx);//0
+	dup2(data->file, idx);
 }
 
 void	cmd(t_pipex *data, char **argv, int idx)
 {
 	dup2(data->pipex[!idx], !idx);
-	if (close(data->pipex[idx]) < 0)
-		ft_error(strerror(errno), NULL, 1);
 	if (close(data->file) < 0)
 		ft_error(strerror(errno), argv[1 + 3 * idx], 1);
-	// if (close(data->pipex[!idx]) < 0)
-	// 	ft_error(strerror(errno), NULL, 1);
+	if (close(data->pipex[idx]) < 0 || close(data->pipex[!idx]) < 0)
+		ft_error(strerror(errno), NULL, 1);
 	cmd_exe(&*data, argv[2 + idx], idx);
-	// ft_putstr_fd("cmd arg: ", 2);
-	// ft_putstr_fd(data->cmd[idx].exe[0], 2);
-	// ft_putstr_fd(" ", 2);
-	// ft_putendl_fd(data->cmd[idx].exe[1], 2);
+	if (!data->cmd[idx].path)
+		ft_error(data->cmd[idx].exe[0], "command not found", 1);
+	ft_putstr_fd("cmd arg: ", 2);
+	ft_putstr_fd(data->cmd[idx].exe[0], 2);
+	ft_putstr_fd(" ", 2);
+	ft_putendl_fd(data->cmd[idx].exe[1], 2);
 	execve(data->cmd[idx].path, data->cmd[idx].exe, 0);
 	ft_error(strerror(errno), data->cmd[idx].exe[0], 1);
 }
@@ -86,7 +86,7 @@ void	runpipe(t_pipex *data, char **argv, pid_t pid)
 		openfile(&*data, argv, O_CREAT | O_RDWR | O_TRUNC, 1);
 		if (waitpid(-1, &status, WUNTRACED) && status)
 			dup2(1, data->pipex[0]);
-		ft_putendl_fd(ft_itoa(status), 2);
+		// ft_putendl_fd(ft_itoa(status), 2);
 		cmd(&*data, argv, 1);
 	}
 }
@@ -109,6 +109,8 @@ int	main(int argc, char **argv, char **env)
 	else
 	{
 		waitpid(pid, NULL, WUNTRACED);
+		if(close(data.pipex[1]) < 0)
+			ft_error(strerror(errno), NULL, 1);
 		free_data(&data);
 		// ft_putendl_fd(ft_itoa(status), 2);
 		exit(0);
