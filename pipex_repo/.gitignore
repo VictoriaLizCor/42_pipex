@@ -1,0 +1,13 @@
+# Object files
+*.out
+*.o
+*outfile*
+*infile*
+# Libraries
+*.a
+# Ignored folders
+*/test*/
+*/pipex.dSYM
+obj*/
+# executable
+./pipex
