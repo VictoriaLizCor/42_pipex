@@ -4,7 +4,7 @@ SRCS_DIR := src/
 SRCS =	src/pipex.c		\
 		src/utils.c		\
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 CINCLUDES += -I include/
 
 LIBFT_DIR = lib/libft/
@@ -17,13 +17,32 @@ all: $(NAME)
 
 $(NAME): $(SRCS) | $(LIBFT)
 	@echo $(GREEN)
-	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBFT_FLAGS)
+	cc $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBFT_FLAGS)
 	$(BANNER_FDF)
 
 $(LIBFT):
 	@echo $(BLUE)
 	@make -C $(LIBFT_DIR)
 
+cleaks: $(NAME)
+	leaks --atExit -- ./pipex infile "/bin/cat" "wc" oufile
+	@echo "---"
+	cat oufile
+
+cval: $(NAME)
+	valgrind  --leak-check=full --track-fds=yes --trace-children=yes -s -q ./pipex infile "cat"  "tr a-z A-Z"  outfile
+	@echo "----"
+	cat outfile
+
+pval: $(NAME)
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes --trace-children=yes -s -q <infile cat | tr a-z A-Z >outfile
+	@echo "----"
+	cat outfile
+
+pleaks: $(NAME)
+	leaks --atExit -- <infile cat | tr a-z A-Z >outfile
+	@echo "---"
+	cat oufile
 
 clean:
 	@echo $(RED)

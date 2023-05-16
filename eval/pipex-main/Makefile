@@ -33,6 +33,9 @@ bonus : $(LIBFT)
 $(LIBFT) :
 	@make -C $(LIBFTDIR)
 
+c_val: $(NAME)
+	valgrind  --verbose --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes --trace-children=yes -s -q ./pipex infile "cat"  "tr a-z A-Z"  outfile
+	
 clean :
 	@make clean -C $(LIBFTDIR)
 	@rm -f $(NAME)

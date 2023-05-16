@@ -94,4 +94,8 @@ valgrind --leak-check=full \
  --track-fds=yes \ 
  ./pipex infile "cat" "tr a-z A-Z" outfile 
 
-valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --trace-children=yes -s -q ./pipex infile "cat"  "tr a-z A-Z"  outfile
+valgrind  --verbose --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes --trace-children=yes -s -q ./pipex infile "cat"  "tr a-z A-Z"  outfile
+
+valgrind --verbose --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes --trace-children=yes -s -q <infile cat | tr a-z A-Z >outfile
+
+leaks --atExit --  ./pipex infile "cat" "tr a-z A-Z"  outfile

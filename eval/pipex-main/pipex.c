@@ -24,6 +24,7 @@ void	ft_pipe_process(int num, char **cmds_path, char *envp[], int **pipes)
 		if (num + 1 != count)
 			close(pipes[count][1]);
 	}
+	ft_putendl_fd(ft_itoa(-15), 2);
 	dup2(pipes[num][0], 0);
 	close(pipes[num][0]);
 	dup2(pipes[num + 1][1], 1);
@@ -92,7 +93,10 @@ int	ft_fork_proc(char *argv[], char *envp[], int **pipefds, int *pid)
 		if (count && pid[count] == 0)
 			ft_last_proc(count, cmds_path, envp, pipefds);
 		else if (pid[count] == 0)
+		{
+			ft_putendl_fd(ft_itoa(status), 2);
 			ft_pipe_process(count, cmds_path, envp, pipefds);
+		}
 		else if (pid[count] < 0)
 			perror("Creating a new process failed");
 		if (cmds_path)
@@ -124,7 +128,9 @@ int	main(int argc, char *argv[], char *envp[])
 	if (ft_fork_proc(argv, envp, pipes, pid))
 		status = 127;
 	while (++count < procs)
-		waitpid(pid[count], NULL, 0);
+	{
+		waitpid(pid[count], &status, 0);
+	}
 	ft_free_pipes(pipes);
 	// unlink("./temp.txt");
 	free(pid);

@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:19:28 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/15 15:28:33 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:26:45 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 	int	pid, status;
 	int	fd[2];
 	char *str;
-	char *cmd1[] = { "/bin/cat", "cat", "test.c", 0 };
+	char *cmd1[] = { "/bin/cat", "test.c", 0 };
 	char *cmd2[] = { "/usr/bin/tr", "a-z", "A-Z", 0 };
 	// char *cmd2[] = { "/bin/zsh", "zsh -c l", 0};
 	pipe(fd);
