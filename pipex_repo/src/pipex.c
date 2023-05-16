@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:59:02 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/15 22:25:40 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:20:17 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	cmd_exe(t_pipex *d, char *argv, int idx)
 		if (ft_strnstr(tmp_cmd, path_tmp, ft_strlen(tmp_cmd)))
 		{
 			d->cmd[idx].exe[0] = ft_strtrim(d->cmd[idx].exe[0], path_tmp);
-			tmp_cmd = tmp_cmd + ft_strlen(path_tmp);
+			tmp_cmd = d->cmd[idx].exe[0];
 		}
 		exe_path = ft_strjoin(path_tmp, tmp_cmd);
 		if (access(exe_path, X_OK | F_OK) == 0)
