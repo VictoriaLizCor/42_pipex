@@ -6,7 +6,7 @@
 /*   By: lilizarr <lilizarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:59:02 by lilizarr          #+#    #+#             */
-/*   Updated: 2023/05/16 17:44:37 by lilizarr         ###   ########.fr       */
+/*   Updated: 2023/05/17 10:07:44 by lilizarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	cmd_exe(t_pipex *d, char *argv, int idx)
 
 	p = d->paths;
 	d->cmd[idx].exe = ft_split(argv, ' ');
+	if (!*d->cmd[idx].exe)
+		d->cmd[idx].path = ft_strdup("./");
 	tmp_cmd = d->cmd[idx].exe[0];
 	if (tmp_cmd && ft_strchr(tmp_cmd, '/') && access(tmp_cmd, X_OK) == -1)
 		ft_error(strerror(errno), tmp_cmd, 1);
@@ -36,8 +38,6 @@ void	cmd_exe(t_pipex *d, char *argv, int idx)
 		free(exe_path);
 		p++;
 	}
-	if (!*d->cmd[idx].exe)
-		d->cmd[idx].path = ft_strdup("./");
 }
 
 void	openfile(t_pipex *data, char **argv, int oflag, int idx)

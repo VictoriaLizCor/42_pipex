@@ -26,22 +26,22 @@ $(LIBFT):
 
 cleaks: $(NAME)
 	leaks --atExit -- ./pipex infile "/bin/cat" "wc" oufile
-	@echo "---"
+	@echo "----"
 	cat oufile
 
 cval: $(NAME)
 	valgrind  --leak-check=full --track-fds=yes --trace-children=yes -s -q ./pipex infile "cat"  "tr a-z A-Z"  outfile
-	@echo "----"
+	@echo "-----"
 	cat outfile
 
 pval: $(NAME)
 	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes --trace-children=yes -s -q <infile cat | tr a-z A-Z >outfile
-	@echo "----"
+	@echo "-----"
 	cat outfile
 
 pleaks: $(NAME)
 	leaks --atExit -- <infile cat | tr a-z A-Z >outfile
-	@echo "---"
+	@echo "----"
 	cat oufile
 
 clean:
