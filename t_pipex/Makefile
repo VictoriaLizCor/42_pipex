@@ -4,7 +4,7 @@ SRCS_DIR := src/
 SRCS =	src/pipex.c		\
 		src/utils.c		\
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 CINCLUDES += -I include/
 
 LIBFT_DIR = lib/libft/
